@@ -67,13 +67,24 @@ class UserController {
 
   async update(req, res) {
     try {
-      const { uid } = req.params;
-      const updated = await User.update(req.body, { where: { uid } });
+      const { email, oldPassword } = req.body;
 
-      if (!updated) {
-        throw Error('Brand não encontrado');
+      const { uid } = req.params;
+
+      // aqui ja estou achando o usuário
+      const user = await User.findByPk(uid);
+
+      if (email !== user.email) {
+        return res.json({ error: 'Usuário não encontrado' });
       }
-      return res.json('DATA_UPDATE');
+
+      if (oldPassword && !(await user.checkPassword(oldPassword))) {
+        return res.status(401).json({ error: 'Senha invalida' });
+      }
+      // e aqui n é necessário acha-lo novamente
+      const { name } = await user.update(req.body);
+
+      return res.json({ user: { uid, name, email } });
     } catch (error) {
       return res.json({ error });
     }

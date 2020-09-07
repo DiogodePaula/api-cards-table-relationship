@@ -10,7 +10,7 @@ class CardController {
           {
             model: User,
             as: 'user',
-            attributes: ['uid', 'name', 'cpf'],
+            attributes: ['uid', 'name', 'email'],
           },
         ],
       });
@@ -32,7 +32,7 @@ class CardController {
           {
             model: User,
             as: 'user',
-            attributes: ['uid', 'name', 'cpf'],
+            attributes: ['uid', 'name', 'email'],
           },
         ],
       });
