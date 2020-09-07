@@ -1,5 +1,8 @@
 {
     "name": "desafio-25-06",
+    "engines": {
+      "node": "v12.17.0"
+    },
     "version": "1.0.0",
     "main": "index.js",
     "repository": "https://github.com/Dionatas1114/desafio-25-06.git",
